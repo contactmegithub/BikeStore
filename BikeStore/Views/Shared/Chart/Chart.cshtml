@@ -1,0 +1,54 @@
+﻿@model dynamic
+<div>
+    <button onclick="drawTitleSubtitle()">Show as Chart(s)</button>
+</div>
+<div id="PieChart_div"></div>
+<div id="BarChart_div"></div>
+<div id="AnnotationChart_div"></div>
+<div id="ColumnChart_div"></div>
+<div id="chart_lines"></div>
+<div id="curve_chart"></div>
+<script type="text/javascript">
+    function drawTitleSubtitle() {
+        var data = new google.visualization.DataTable();
+        var isColumnsAdded = false;
+        var jsonModel = @Html.Raw(Json.Encode(Model));
+        $.each(jsonModel, function () {
+            var arr = [];
+            $.each(this, function (k, v) {
+                if (!isColumnsAdded)
+                data.addColumn(typeof (v), k);
+                arr.push(v);
+            });
+            isColumnsAdded = true;
+            data.addRow(arr);
+        });
+                 var materialOptions = {
+            chart: {
+                 title: 'Population of Largest U.S. Cities',
+                subtitle: 'Based on most recent and previous census data'
+            },
+            hAxis: {
+                 title: 'Product Count',
+                minValue: 0,
+            },
+            vAxis: {
+                title: 'Category'
+            },
+                     bars: 'horizontal',
+                     displayAnnotations: true
+            };
+        var materialChart = new google.visualization.PieChart(document.getElementById('PieChart_div'));
+        var barChart = new google.visualization.BarChart(document.getElementById('BarChart_div'));
+        var bubbleChart = new google.visualization.BubbleChart(document.getElementById('AnnotationChart_div'));
+        var columnChart = new google.visualization.ColumnChart(document.getElementById('ColumnChart_div'));
+        var chart_lines = new google.visualization.LineChart(document.getElementById('chart_lines'));
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+        chart.draw(data, materialOptions);
+        chart_lines.draw(data, materialOptions);
+        materialChart.draw(data, materialOptions);
+        barChart.draw(data, materialOptions);
+        bubbleChart.draw(data, materialOptions);
+        columnChart.draw(data, materialOptions);
+         }
+</script>

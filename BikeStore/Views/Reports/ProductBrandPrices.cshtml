@@ -1,0 +1,47 @@
+﻿@model IEnumerable<BikeStore.Models.ProductBrandPrices>
+
+@{
+    ViewBag.Title = "ProductBrandPrices";
+}
+
+<h2>@ViewBag.Message</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BrandName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductsCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AveragePrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MinPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaxPrice)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BrandName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductsCount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AveragePrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MinPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaxPrice)
+        </td>
+    </tr>
+}
+</table>
