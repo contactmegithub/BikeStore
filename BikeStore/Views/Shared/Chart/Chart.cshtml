@@ -23,21 +23,22 @@
             isColumnsAdded = true;
             data.addRow(arr);
         });
-                 var materialOptions = {
-            chart: {
-                 title: 'Population of Largest U.S. Cities',
-                subtitle: 'Based on most recent and previous census data'
-            },
-            hAxis: {
-                 title: 'Product Count',
-                minValue: 0,
-            },
-            vAxis: {
-                title: 'Category'
-            },
-                     bars: 'horizontal',
-                     displayAnnotations: true
-            };
+        //         var materialOptions = {
+        //    chart: {
+        //         title: 'Population of Largest U.S. Cities',
+        //        subtitle: 'Based on most recent and previous census data'
+        //    },
+        //    hAxis: {
+        //         title: 'Product Count',
+        //        minValue: 0,
+        //    },
+        //    vAxis: {
+        //        title: 'Category'
+        //    },
+        //             bars: 'horizontal',
+        //             displayAnnotations: true
+        //};
+        var materialOptions = @Html.Raw(ViewBag.ChartOptions);
         var materialChart = new google.visualization.PieChart(document.getElementById('PieChart_div'));
         var barChart = new google.visualization.BarChart(document.getElementById('BarChart_div'));
         var bubbleChart = new google.visualization.BubbleChart(document.getElementById('AnnotationChart_div'));

@@ -1,26 +1,28 @@
 ﻿@model IEnumerable<BikeStore.Models.CustomerRegionReport>
 <h2>@ViewBag.Message</h2>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CustomerCount)
-        </th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+    <thead class="thead-dark">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.City)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CustomerCount)
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerCount)
+            </th>
         </tr>
-    }
-
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerCount)
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
-@Html.Partial("Chart/Chart", Model);
+@Html.Partial("Chart/Chart", Model)
